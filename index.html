@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alice Wu — PR Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #2C2018;
+      --rose:      #E8621A;
+      --rose-light:#F5B48A;
+      --bg:        #FEFAF5;
+      --sand:      #EDE0D0;
+      --sand-dark: #D4C0A8;
+      --muted:     #6B5A4E;
+      --white:     #FFFFFF;
+      --rule:      #D8C8B4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--rose); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--rose); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      padding-top: 56px;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-text { display: flex; flex-direction: column; }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 0.5em;
+    }
+    .hero-name span { color: var(--rose); }
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--sand);
+      border: 2px dashed var(--sand-dark);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.5rem;
+      color: var(--sand-dark);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 1rem;
+    }
+    .hero-photo-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 2px dashed var(--sand-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .hero-byline {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-byline::before {
+      content: '';
+      display: block;
+      width: 40px; height: 2px;
+      background: var(--rose);
+    }
+    .hero-byline-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 0.3em;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--rose);
+    }
+    .hero-deck {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin: 1.5rem 0 2.5rem;
+      font-weight: 300;
+    }
+    .hero-deck strong { color: var(--ink); font-weight: 500; }
+    .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--rose);
+      color: #FFFFFF;
+      border: 2px solid var(--rose);
+    }
+    .btn-primary:hover { background: #C44E0E; border-color: #C44E0E; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 2px solid var(--ink);
+    }
+    .btn-secondary:hover { background: var(--ink); color: var(--white); }
+
+    /* hero bg word removed */
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .section-rule {
+      width: 48px; height: 2px;
+      background: var(--rose);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--sand); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-body p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .about-body p strong { color: var(--ink); font-weight: 500; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--white);
+      border-left: 3px solid var(--rose);
+      padding: 1rem 1.2rem;
+    }
+    .skill-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+    .skill-card p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      padding-top: 0.2rem;
+      line-height: 1.5;
+    }
+    .timeline-date .co {
+      display: block;
+      font-style: italic;
+      color: var(--rose);
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+    .timeline-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .timeline-content ul {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .timeline-content ul li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .timeline-content ul li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--rose-light);
+    }
+    .newsjack-box {
+      background: var(--sand);
+      border: 1px solid var(--sand-dark);
+      padding: 1.2rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .newsjack-box h4 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.6rem;
+    }
+    .newsjack-box ul {
+      display: flex; flex-direction: column; gap: 0.35rem;
+    }
+    .newsjack-box ul li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-left: 0;
+      line-height: 1.5;
+    }
+    .newsjack-box ul li::before { display: none; }
+    .newsjack-box ul li::marker { display: none; }
+    .newsjack-tag {
+      display: inline-block;
+      background: var(--rose);
+      color: #FFFFFF;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+
+    /* ── WRITING SAMPLES ── */
+    #writing { background: var(--sand); }
+    .writing-intro {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+    .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .writing-card {
+      background: var(--white);
+      padding: 1.75rem;
+      display: flex; flex-direction: column;
+      gap: 0.75rem;
+      border-top: 3px solid var(--rose);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .writing-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(26,26,46,0.08);
+    }
+    .writing-card-type {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+    .writing-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    .writing-card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .writing-card-meta {
+      font-size: 0.72rem;
+      color: var(--sand-dark);
+      font-style: italic;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .writing-card-meta::before {
+      content: '';
+      display: inline-block;
+      width: 16px; height: 1px;
+      background: var(--rose-light);
+    }
+    .placeholder-note {
+      background: var(--sand);
+      border: 1.5px dashed var(--sand-dark);
+      border-top: 3px solid var(--sand-dark);
+    }
+    .placeholder-note .writing-card-title { color: var(--muted); font-style: italic; }
+    .placeholder-note .writing-card-meta { display: none; }
+    .writing-card { cursor: pointer; }
+    .writing-card-read {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-top: auto;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .writing-card-read::after { content: '→'; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(44, 32, 24, 0.7);
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white);
+      max-width: 720px; width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .modal-header {
+      padding: 2rem 2rem 1.25rem;
+      border-bottom: 1px solid var(--rule);
+      position: sticky; top: 0;
+      background: var(--white);
+      z-index: 2;
+    }
+    .modal-type {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.4rem;
+    }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+    .modal-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .modal-close {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      background: var(--sand); border: none; cursor: pointer;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--ink);
+      border-radius: 2px;
+    }
+    .modal-close:hover { background: var(--sand-dark); }
+    .modal-body {
+      padding: 2rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.9;
+      white-space: pre-wrap;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: #2C2018; }
+    #contact .section-label { color: #F5B48A; }
+    #contact .section-title { color: var(--white); }
+    #contact .section-rule { background: var(--rose); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-copy {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none;
+      padding: 1rem 1.2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.2s;
+      color: var(--white);
+    }
+    .contact-link:hover { background: rgba(196,82,106,0.15); border-color: var(--rose); }
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      background: var(--rose);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .contact-link-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+    }
+    .contact-link-value {
+      font-size: 0.9rem;
+      color: var(--white);
+    }
+    .contact-form-area {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .contact-form-area input,
+    .contact-form-area textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      padding: 0.85rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .contact-form-area input::placeholder,
+    .contact-form-area textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .contact-form-area input:focus,
+    .contact-form-area textarea:focus { border-color: var(--rose); }
+    .contact-form-area textarea { min-height: 120px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1A1008;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.7rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .hero-bg-word { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-photo { aspect-ratio: 1/1; max-width: 200px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .writing-card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#home">Alice <span>Wu</span></a>
+    <ul class="nav-links">
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-name">Alice <span>Wu</span></h1>
+        <div class="hero-byline">
+          <span class="hero-byline-text">Senior PR Associate · St. Catharines, ON</span>
+        </div>
+        <h2 class="hero-headline">
+          Turning tech jargon<br>into stories reporters<br><em>want to cover.</em>
+        </h2>
+        <p class="hero-deck">
+          Ex-journalist. <strong>Current PR specialist.</strong> I bring a reporter's instinct to every pitch, press release, and media relationship I build.
+        </p>
+        <div class="hero-cta-row">
+          <a class="btn btn-primary" href="#writing">See My Work</a>
+          <a class="btn btn-secondary" href="#contact">Get in Touch</a>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; align-items:center;">
+        <img src="Alice_Wu_Headshot.png" alt="Alice Wu" style="width:100%; height:auto; display:block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING SAMPLES -->
+  <section id="writing" style="background: var(--sand);">
+    <div class="section-inner">
+      <p class="section-label">Writing Samples</p>
+      <h2 class="section-title">Rather than tell you — let me show you.</h2>
+      <div class="section-rule"></div>
+      <p class="writing-intro">
+        In this industry, 'show' beats 'tell' every time. So here are some examples of my work.
+      </p>
+
+      <div class="writing-grid">
+
+        <div class="writing-card" onclick="openModal('pitch1')">
+          <span class="writing-card-type">Press Pitch</span>
+          <p class="writing-card-title">Agents gone wild? Why AI agents need a 'passport'</p>
+          <p class="writing-card-desc">AI governance client perfectly positioned to describe the risks of AI agents running loose.<br><br>Associated Press reached out to speak to the CEO.</p>
+          <span class="writing-card-meta">Press Pitch</span>
+          <span class="writing-card-read">Read sample</span>
+        </div>
+
+        <div class="writing-card" onclick="openModal('release1')">
+          <span class="writing-card-type">Press Release</span>
+          <p class="writing-card-title">From Vancouver to viral: AI 'samaritan' hits 1M subscribers and 155M views</p>
+          <p class="writing-card-desc">A local 'Chief AI Officer' built up a cult following by releasing byte-sized AI tutorials, reaching a milestone of 150 million+ views.</p>
+          <span class="writing-card-meta">Press Release</span>
+          <span class="writing-card-read">Read sample</span>
+        </div>
+
+        <div class="writing-card" onclick="openModal('thought1')">
+          <span class="writing-card-type">Thought Leadership</span>
+          <p class="writing-card-title">The cookie is dead. Advertisers can leverage new targeting tools to get back to brand building — Marketing Mag</p>
+          <p class="writing-card-desc">Helping shape client's voice in the digital advertising space as Google got close to deprecating cookies.</p>
+          <span class="writing-card-meta">Thought Leadership</span>
+          <span class="writing-card-read">Read sample</span>
+        </div>
+
+        <div class="writing-card" onclick="openModal('newsjack1')">
+          <span class="writing-card-type">Newsjacking Campaign</span>
+          <p class="writing-card-title">Hey there, your inventory is showing</p>
+          <p class="writing-card-desc">Covid led to product shortages (what do you mean you're out of toilet paper?) but also another problem for businesses: excess inventory. A Supply Chain AI startup had proprietary data that captured this problem.</p>
+          <span class="writing-card-meta">Newsjacking Pitch</span>
+          <span class="writing-card-read">Read sample</span>
+        </div>
+
+        <div class="writing-card" onclick="openModal('placement1')">
+          <span class="writing-card-type">Feature Placement</span>
+          <p class="writing-card-title">Meet the expert demystifying government purchases for small businesses — Forbes</p>
+          <p class="writing-card-desc">Small business sentiment was at an 11-year low. The feds allocated nearly $1B for SBA lending. But there was another way to boost optimism: make it easy for SMBs to sell to the world's biggest customer — government. The pitch landed the client a feature in Forbes.</p>
+          <span class="writing-card-meta">Forbes</span>
+          <span class="writing-card-read">Read sample</span>
+        </div>
+
+        <div class="writing-card" onclick="openModal('placement2')">
+          <span class="writing-card-type">Feature Placement</span>
+          <p class="writing-card-title">I quit my corporate job to start my own event planning company, failed, then tried again — Business Insider</p>
+          <p class="writing-card-desc">CEO of Shift + Alt started an event planning company, leaving behind a lucrative career in investment banking. The story made for a perfect 'As-Told-To' pitch for Business Insider.</p>
+          <span class="writing-card-meta">Business Insider</span>
+          <span class="writing-card-read">Read sample</span>
+        </div>
+
+        <div class="writing-card" onclick="openModal('podcast1')">
+          <span class="writing-card-type">Podcast Pitch</span>
+          <p class="writing-card-title">Highlighting the individual expertise of several architects</p>
+          <p class="writing-card-desc">Architecture firm wanted to amplify its healthcare design expertise. Pitching the firm's expertise on Indigenous design and inclusivity proved to be a successful angle.</p>
+          <span class="writing-card-meta">Podcast Pitch</span>
+          <span class="writing-card-read">Read sample</span>
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL OVERLAY -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <p class="modal-type" id="modalType"></p>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-meta" id="modalMeta"></p>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const samples = {
+      pitch1: {
+        type: 'Press Pitch',
+        title: "Agents gone wild? Why AI agents need a 'passport'",
+        meta: 'Press Pitch',
+        body: `<p style="margin-bottom:1.5rem;">CEO's comments were used in AP story: <a href="https://apnews.com/article/moltbook-autonomous-ai-agents-openclaw-69855ab843a5597577120aac99efde9a" target="_blank" style="color:var(--rose);font-weight:500;">Security concerns and skepticism are bursting the bubble of Moltbook, the viral AI social forum</a></p><hr style="border:none;border-top:1px solid var(--rule);margin:1.5rem 0;"/><p style="font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem;">The Pitch</p><p style="margin-bottom:1rem;">Moltbook, the viral 'social network for AI agents', just exposed 35,000 emails, DMs, and 1.5 million API tokens.</p><p style="margin-bottom:1rem;">Agents gone wild is exactly why [AI governance client] built their governance operating system.</p><p style="margin-bottom:1rem;">"We developed an 'Agent Passport' where scope, jurisdictional rules, and a kill switch are embedded in every single agent, then enforced in real time," explains the CEO. "In one internal test, an agent tried to reuse prior context to access a dataset outside its approved jurisdiction. Nothing was 'hacked' and no alert was triggered by traditional tools, but the passport detected a scope violation and automatically shut the agent down before a single unauthorized action was completed. From the outside, it looked like nothing happened."</p><p style="margin-bottom:1rem;">"Moltbook's founder says it was all vibe-coded, but the problem wasn't a single bug. It was launching autonomy without governance. When you let agents decide and act on their own, trust has to be enforced at the decision-making level, not assumed."</p><p>Can I connect you with [the CEO] to talk about what agentic AI enforcement actually looks like?</p>`,
+        isHtml: true
+      },
+      release1: {
+        type: 'Press Release',
+        title: "From Vancouver to viral: AI 'samaritan' hits 1M subscribers and 155M views",
+        meta: 'Press Release · February 2025',
+        body: `<p style="margin-bottom:1rem;">This press release was picked up by Business in Vancouver, a publication on the client's wish list. BIV ran this story: <a href="https://www.biv.com/news/technology/vancouver-ai-tutorial-star-turns-passion-into-six-figure-business-10233336" target="_blank" style="color:var(--rose);font-weight:500;">Vancouver AI tutorial star turns passion into six-figure business</a></p><hr style="border:none;border-top:1px solid var(--rule);margin:1.5rem 0;"/><h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink);margin-bottom:1.25rem;">Vancouver's AI Guru: digitalSamaritan Hits 1M Subscribers with byte-sized AI tutorials</h3><p style="margin-bottom:1rem;"><strong>February XX, 2025 (Vancouver, BC)</strong> – AI's popularity can't be stopped. Globally, an <a href="https://www.statista.com/forecasts/1449844/ai-tool-users-worldwide" target="_blank" style="color:var(--rose);">estimated 729 million people will use AI tools by 2030</a>.</p><p style="margin-bottom:1rem;">Closer to home, Vancouver's <a href="https://www.digitalsamaritan.co/" target="_blank" style="color:var(--rose);">digitalSamaritan</a> – a creator of AI tutorials – has reached 1M subscribers, capturing 155 million views and counting across his social channels.</p><p style="margin-bottom:1rem;">"Followers spiked after ChatGPT was released, but I've been showing people how to use AI to streamline their work-life since 2020, before ChatGPT made AI a household name," says <a href="https://ca.linkedin.com/in/kushankaggarwal" target="_blank" style="color:var(--rose);">Kushank Aggarwal</a>, tech entrepreneur and the persona behind digitalSamaritan.</p><p style="margin-bottom:1rem;">Aggarwal's short, easily-digestible tutorials are shared across <a href="https://www.instagram.com/digitalsamaritan/" target="_blank" style="color:var(--rose);">Instagram</a>, <a href="https://www.tiktok.com/@digitalsamaritan" target="_blank" style="color:var(--rose);">TikTok</a>, and <a href="https://www.youtube.com/@digitalsamaritan" target="_blank" style="color:var(--rose);">YouTube</a>. He considers himself his subscribers' 'Chief AI Officer' and has created about 1,500+ tutorials to help businesses and the public leverage AI.</p><p style="margin-bottom:1rem;">"I started talking about tools and workflows because I am a generalist and obsessed with productivity. Being in product, I used to be curious about what tools other founders are building and how it can save me time and bridge my skills gap. I felt like leveraging tools the right way is a superpower and empowering for generalists."</p><p style="margin-bottom:1rem;">He also started YCJ Group soon after realizing the positive impact digitalSamaritan had with its useful tutorials. YCJ Group is an AI Venture Studio that identifies gaps in AI solutions, and then works to build software to fill those gaps.</p><p style="margin-bottom:1rem;">Next for Aggarwal is the launch of <a href="http://looplytic.com" target="_blank" style="color:var(--rose);">Looplytic</a>, a customer intelligence agent currently in BETA. "There doesn't seem to be another tool like it out there," he adds.</p><hr style="border:none;border-top:1px solid var(--rule);margin:1.5rem 0;"/><p style="margin-bottom:0.5rem;"><strong>About digitalSamaritan:</strong></p><p style="margin-bottom:1rem;">digitalSamaritan is a Vancouver-based platform dedicated to helping professionals, businesses, and the public learn how to integrate AI into their work-life via short video tutorials. Founded by tech entrepreneur and engineer Kushank Aggarwal, the platform provides accessible, practical guidance on leveraging AI and automation.</p><p style="line-height:2;"><a href="https://www.digitalsamaritan.co/" target="_blank" style="color:var(--rose);">digitalsamaritan.co</a><br><a href="https://www.instagram.com/digitalsamaritan/" target="_blank" style="color:var(--rose);">Instagram</a><br><a href="https://www.youtube.com/@digitalsamaritan" target="_blank" style="color:var(--rose);">YouTube</a><br><a href="https://www.tiktok.com/@digitalsamaritan" target="_blank" style="color:var(--rose);">TikTok</a></p>`,
+        isHtml: true
+      },
+      thought1: {
+        type: 'Thought Leadership',
+        title: 'The cookie is dead. Advertisers can leverage new targeting tools to get back to brand building',
+        meta: 'Marketing Mag',
+        body: `<p style="margin-bottom:1rem;">Client built an emotional AI tool to target audiences in the right mindset. This thought leadership piece ran in Marketing Mag. Below is an excerpt.</p><p style="margin-bottom:1.5rem;">To read the full thought leadership, <a href="https://www.marketingmag.com.au/featured/the-cookie-is-dead-advertisers-can-leverage-new-targeting-tools-to-get-back-to-brand-building/" target="_blank" style="color:var(--rose);font-weight:500;">click here</a>.</p><hr style="border:none;border-top:1px solid var(--rule);margin:1.5rem 0;"/><p style="font-style:italic;color:var(--ink);line-height:1.9;">The deprecation of the cookie is an opportunity for marketers to test new targeting with emerging AI-powered adtech that can help brands truly connect with their audiences and foster profound brand presence. Josh Rosen explores.</p>`,
+        isHtml: true
+      },
+      newsjack1: {
+        type: 'Newsjacking Campaign',
+        title: 'Hey there, your inventory is showing',
+        meta: 'Newsjacking Pitch',
+        body: `<p style="margin-bottom:1.5rem;">This newsjacking campaign captured the attention of a journalist at The Wall Street Journal. He interviewed the CEO. Unfortunately, breaking news took precedence.</p><hr style="border:none;border-top:1px solid var(--rule);margin:1.5rem 0;"/><p style="font-size:0.7rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem;">The Pitch</p><p style="margin-bottom:1rem;">To stock, or not to stock? And how much? It's a fine line to walk as retailers continue <a href="https://www.yahoo.com/lifestyle/high-inventories-likely-past-peak-181008059.html" target="_blank" style="color:var(--rose);">grappling with excess inventory</a> now that the holiday season is long gone.</p><p style="margin-bottom:1rem;">"We find that clients are between 25 to 35 percent high on their inventory when they fail to regularly update their supply chain design parameters," says [CEO] of [Supply Chain AI client], a data science company that models supply chains.</p><p style="margin-bottom:1rem;">"One client – a pharmacy brand – increased revenue by 65 percent after running AI models on its supply chain. The models showed the company wasn't responding to demand efficiently due to a serious inventory discrepancy."</p><p style="margin-bottom:1rem;">"Another client was able to save 25 percent on inventory costs after its analysis, all the while increasing the shelf life of its products."</p><p style="margin-bottom:1rem;">"AI supply chain modeling can provide this kind of insight to optimize inventory levels."</p><p style="margin-bottom:1rem;">Companies like <a href="https://www.cnbc.com/2023/01/19/nordstrom-shares-sink-after-retailer-posts-weak-holiday-sales.html" target="_blank" style="color:var(--rose);">Nordstrom</a>, <a href="https://www.cnbc.com/2023/01/19/nordstrom-shares-sink-after-retailer-posts-weak-holiday-sales.html" target="_blank" style="color:var(--rose);">Under Armour</a>, <a href="https://www.reuters.com/business/retail-consumer/bed-bath-beyond-quarterly-loss-widens-merchandising-issues-2022-09-29/" target="_blank" style="color:var(--rose);">Bed, Bath & Beyond</a>, and <a href="https://www.cnbc.com/2022/06/07/target-markdowns-plan-to-cut-inventory.html" target="_blank" style="color:var(--rose);">Target</a> are just a handful of the major retailers undergoing excess inventory purges.</p><p style="margin-bottom:1rem;">"The excess is sold at steep discounts, or at a loss, to make room for new inventory. That's a hit to their bottom line, but without modernizing their supply chain designs, what's to stop the excess inventory cycle from repeating?"</p><p>Would you be interested in speaking with [the CEO] on the other ways AI technology can shore up supply chains? Please let me know, and I can connect you.</p>`,
+        isHtml: true
+      },
+      placement1: {        type: 'Feature Placement',
+        title: 'Meet the expert demystifying government purchases for small businesses — Forbes',
+        meta: 'Forbes',
+        body: `<p style="margin-bottom:1rem;">GLASS is a platform designed to connect SMBs with government buyers. Government employees were already buying products small businesses were selling. Procurement teams just needed a way to find the SMBs. And SMBs needed a way to reach government buyers.</p><p style="margin-bottom:1.5rem;">The pitch landed the CEO an interview with Forbes. Check it out below.</p><hr style="border:none;border-top:1px solid var(--rule);margin:1.5rem 0;"/><p><a href="https://www.forbes.com/sites/meganpoinski/2024/04/21/meet-the-expert-demystifying-government-purchases-for-small-businesses/" target="_blank" style="color:var(--rose);font-weight:600;font-size:1rem;">Meet The Expert Demystifying Government Purchases For Small Businesses — Forbes →</a></p>`,
+        isHtml: true
+      },
+      placement2: {
+        type: 'Feature Placement',
+        title: 'I quit my corporate job to start my own event planning company, failed, then tried again — Business Insider',
+        meta: 'Business Insider',
+        body: `<p style="margin-bottom:1rem;">Shift + Alt is a boutique event planning agency that caters to UHNWI (ultra high net worth individuals). But the CEO started in investment banking.</p><p style="margin-bottom:1.5rem;">The pitch about her unique career pivot landed her an interview with Business Insider. Check it out below.</p><hr style="border:none;border-top:1px solid var(--rule);margin:1.5rem 0;"/><p><a href="https://www.businessinsider.com/quit-corporate-job-start-own-company-failed-tried-again-2025-7" target="_blank" style="color:var(--rose);font-weight:600;font-size:1rem;">Woman Left Corporate Job to Start Her Own Company; Failed, Tried Again — Business Insider →</a></p>`,
+        isHtml: true
+      },
+      podcast1: {
+        type: 'Podcast Pitch',
+        title: 'Podcast Outreach',
+        meta: 'Podcast Pitch',
+        body: `<p style="margin-bottom:1.5rem;">The Canadian architecture firm wanted to generate more attention for its healthcare projects, and the architects behind them. Pitching individual designers to targeted podcasts proved to be a fruitful strategy.</p><p style="margin-bottom:1.25rem;">Below is a selection of podcasts featuring the firm's experts:</p><hr style="border:none;border-top:1px solid var(--rule);margin:1.5rem 0;"/><p style="margin-bottom:1rem;"><a href="https://convo-by-design.blubrry.net/2025/12/16/designing-the-future-of-healthcare-627-architecture-ai-and-human-centered-spaces-rebecca-macdonald-and-kyle-bassilius-of-parkin-architects/" target="_blank" style="color:var(--rose);font-weight:500;">Designing the Future of Healthcare | 626 | Architecture, AI, and Human-Centered Spaces; Rebecca MacDonald and Kyle Bassilius of Parkin Architects</a></p><p style="margin-bottom:1rem;"><a href="https://www.arcat.com/podcast/164" target="_blank" style="color:var(--rose);font-weight:500;">Detailed Podcast</a></p><p style="margin-bottom:1rem;"><a href="https://podcasts.apple.com/ca/podcast/building-wellness-how-hospital-design-impacts-health/id1709905537?i=1000697383436" target="_blank" style="color:var(--rose);font-weight:500;">Architecturally Speaking by OAA — Building Wellness: How Hospital Design Impacts Health</a></p><p style="margin-bottom:1rem;"><a href="https://podcasts.apple.com/ca/podcast/building-wellness-how-hospital-design-impacts-health/id1709905537?i=1000697383436" target="_blank" style="color:var(--rose);font-weight:500;">Behind the Build — Building Wellness: How Hospital Design Impacts Health</a></p>`,
+        isHtml: true
+      }
+    };
+
+    function openModal(id) {
+      const s = samples[id];
+      if (!s) return;
+      document.getElementById('modalType').textContent = s.type;
+      document.getElementById('modalTitle').textContent = s.title;
+      document.getElementById('modalMeta').textContent = s.meta;
+      const bodyEl = document.getElementById('modalBody');
+      if (s.isHtml) {
+        bodyEl.style.whiteSpace = 'normal';
+        bodyEl.innerHTML = s.body;
+      } else {
+        bodyEl.style.whiteSpace = 'pre-wrap';
+        bodyEl.textContent = s.body;
+      }
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeOnOverlay(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">A journalist's lens to every PR campaign</h2>
+      <div class="section-rule"></div>
+      <div class="about-grid">
+        <div class="about-body">
+          <p>
+            I started my career writing scripts for TV and radio newscasts: tracking down breaking stories, writing on deadline, and most importantly — identifying the headline-worthy angle.
+          </p>
+          <p>
+            Today, I apply that same editorial lens to PR. I don't pitch products. I don't pitch feature updates. I pitch the news hook, craft the narrative, and give journalists a story they'll actually want to cover.
+          </p>
+        </div>
+        <div>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h4>Story Ideas</h4>
+              <p>Gauging the newsy angle around product launches, data stories, reactive moments.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Pitch Writing</h4>
+              <p>Crisp, direct, reporter-friendly. From 3-line emails to full press releases.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Newsjacking</h4>
+              <p>Spotting trending stories and positioning clients as the expert voice.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Media Outreach</h4>
+              <p>Research and identify targeted journalists for each pitch.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Analytics</h4>
+              <p>Turning proprietary data into data-driven angles journalists love.</p>
+            </div>
+            <div class="skill-card">
+              <h4>Exec Coaching</h4>
+              <p>Media training company leaders for interviews, on message and camera-ready.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Where I've worked</h2>
+      <div class="section-rule"></div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            Apr 2022 — Present
+            <span class="co">Mind Meld PR</span>
+          </div>
+          <div class="timeline-content">
+            <h3>Senior Public Relations Associate</h3>
+            <ul>
+              <li>Develop and execute earned media and thought leadership campaigns for technology, AI, SaaS, healthcare, and B2B clients.</li>
+              <li>Build and maintain relationships with journalists across business, technology, and trade publications to secure high-impact media coverage.</li>
+              <li>Monitor breaking news, cultural trends, and industry developments to identify strategic newsjacking opportunities and expert commentary placements.</li>
+              <li>Partner directly with founders, executives, and subject matter experts to uncover compelling narratives and position them as industry thought leaders.</li>
+              <li>Write media pitches, press releases, executive messaging, contributed articles, briefing materials, and thought leadership content.</li>
+              <li>Prepare and coach executives for media interviews by developing key messages and anticipating reporter questions.</li>
+              <li>Analyze proprietary client data to create newsworthy, data-driven PR campaigns.</li>
+              <li>Collaborate cross-functionally with client marketing and leadership teams to align communications initiatives with business objectives.</li>
+              <li>Track campaign performance, media coverage, and engagement metrics to evaluate communications effectiveness and inform future strategy.</li>
+              <li>Leverage Gen AI tools to enhance research, content development, media monitoring, and campaign execution efficiency.</li>
+              <li>Coach executives and other company leaders on best practices for amplifying earned media coverage via social media and owned content.</li>
+              <li>Conduct client interviews to prepare award submission content.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            Oct 2012 — Sep 2015
+            <span class="co">Fox31 Denver</span>
+          </div>
+          <div class="timeline-content">
+            <h3>Associate Producer</h3>
+            <ul>
+              <li>Tracked, researched, and identified breaking news for local TV newscasts</li>
+              <li>Wrote anchor scripts, teases, and breaking news copy under tight deadlines</li>
+              <li>Filled in as line producer for the 10pm newscast</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            May 2009 — Apr 2012
+            <span class="co">Citytv Edmonton</span>
+          </div>
+          <div class="timeline-content">
+            <h3>Writer / Videojournalist</h3>
+            <ul>
+              <li>General news VJ specializing in enterprising, reporter-driven story ideas</li>
+              <li>Shot, wrote, and edited packages from the field, end to end</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">
+            Education
+            <span class="co">Western University</span>
+          </div>
+          <div class="timeline-content">
+            <h3>Master of Arts in Journalism</h3>
+            <ul>
+              <li>University of Western Ontario — graduate focus on reporting and media practice</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">So, what can I contribute to your team?</h2>
+      <div class="section-rule"></div>
+      <div>
+          <p class="contact-copy">
+            Reach out. I'd love the opportunity to answer that question, and any others you might have about my skills and qualifications.
+          </p>
+          <div class="contact-links" style="margin-top: 2rem;">
+            <a class="contact-link" href="mailto:wualice3000@gmail.com">
+              <div class="contact-link-icon">✉</div>
+              <div>
+                <span class="contact-link-label">Email</span>
+                <span class="contact-link-value">wualice3000@gmail.com</span>
+              </div>
+            </a>
+            <a class="contact-link" href="https://www.linkedin.com/in/awu04/" target="_blank" rel="noopener">
+              <div class="contact-link-icon">in</div>
+              <div>
+                <span class="contact-link-label">LinkedIn</span>
+                <span class="contact-link-value">linkedin.com/in/awu04</span>
+              </div>
+            </a>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Alice Wu · Senior PR Associate · St. Catharines, ON
+  </footer>
+
+</body>
+</html>
